@@ -41,10 +41,10 @@ bin/clean
 ### Execution
 
 ```shell script
-java -jar CsvParser-1.0.jar product.csv result
+java -jar CsvParser.jar product.csv result
 ```
 
-Another convenient script is parse.sh
+Another convenient script is parse
 ```shell script
 bin/parse product.csv result
 ```

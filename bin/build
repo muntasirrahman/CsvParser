@@ -3,12 +3,12 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 BUILD_DIR="$(dirname "$DIR")/build/classes/java/main"
 SRC_DIR="$(dirname "$DIR")/src/main/java"
-JAR_FILE="CsvParser-1.0.jar"
+JAR_FILE="CsvParser.jar"
 
 mkdir -p $BUILD_DIR
 javac -sourcepath $SRC_DIR -d $BUILD_DIR $SRC_DIR/org/muntasir/lab/CsvParser.java
 mkdir -p lib
-jar cfe CsvParser-1.0.jar org.muntasir.lab.CsvParser -C build/classes/java/main/ .
+jar cfe $JAR_FILE org.muntasir.lab.CsvParser -C $BUILD_DIR .
 
 LIB_JUNIT="$(dirname "$DIR")/lib/junit-jupiter-api-5.6.2.jar"
 if [ ! -f "$LIB_JUNIT" ]; then

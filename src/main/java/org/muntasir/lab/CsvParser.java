@@ -29,9 +29,9 @@ public class CsvParser {
     public static void main(String[] args) {
 
         if (args.length < 1) {
-            System.out.println("Usage:java CsvParser <input csv> <optional output directory>"
-                    + "\nexample:"
-                    + "\n\tjava CsvParser ./product.csv");
+            System.out.println("Usage: \tjava -jar CsvParser.jar <input csv> <optional output directory>"
+                    + "\nExample:"
+                    + "\n\tjava -jar CsvParser.jar product.csv");
             System.exit(EXIT_FROM_ERROR);
         }
 
@@ -165,13 +165,12 @@ public class CsvParser {
 
     /**
      * Deep cloning operation. The implementation might be different among CsvField extensions.
-     * @param originalSet
+     * @param originalSet original set
      * @return cloning result
      */
     public Set<CsvField> clone(Set<CsvField> originalSet) {
-        Set<CsvField> newSet = originalSet.stream()
+        return originalSet.stream()
                 .map(field -> (CsvField) field.clone())
                 .collect(Collectors.toCollection(TreeSet::new));
-        return newSet;
     }
 }
