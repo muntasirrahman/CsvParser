@@ -3,8 +3,9 @@
 This software can generate JSON files from a CSV file.
 
 These executable files:
-* build.sh
-* clean.sh 
+* bin/build
+* bin/clean
+* bin/parse 
 
 are tested on Mac OSX, and Ubuntu Linux.
 
