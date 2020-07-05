@@ -1,0 +1,8 @@
+product_name, sales_rep :email, customer_support :phone, price :number, description
+Fanta Orange, fanta@cocacola.com, 6590001111, 1.36, beverage with artificial color orange and excessive sugar
+Heaven & Earth Lemon Tea, tea@cocacola.com, 6590002222, 1.75, water with artificial tea sold as drink from heaven
+
+A&W Root Beer, sales@aw.com, 6590003333, 2.0, brown water with excessive sugar sold as beer
+Pocari Sweat, info@pocari.co.jp, 6590004444, 4.5, sea water promoted as sport drink
+Vitagen, sales@vitagen.com, 6590005555, 3.20, contaminated milk with bacterias sold as health drink
+

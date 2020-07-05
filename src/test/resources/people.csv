@@ -1,0 +1,5 @@
+full_name, work_email :email , published_papers :number, organisation, org_phone :phone
+Albert Einstein, albert@ias.edu, 120, Institute of Advanced Studies, 1800123456
+Isaac Newton, isaac@cam.ac.uk, 321, Cambridge University, 440012345678
+
+Gottfried Wilhelm Leibniz, wilhelm@uni-leipzig.de, 79, University of Leipzig, 1800123456
