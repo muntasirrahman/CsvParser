@@ -43,6 +43,11 @@ bin/clean.sh
 java -jar CsvParser-1.0.jar product.csv result
 ```
 
+Another convenient script is parse.sh
+```shell script
+bin/parse.sh product.csv result
+```
+
 ## Project Structure
 
 This project was built using Gradle, using recommended gradle directory structure.
