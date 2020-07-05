@@ -20,7 +20,7 @@ installed and working.
 To build and to download dependencies, type:
 
 ```shell script
-bin/build.sh
+bin/build
 ```
 
 The output of build.sh script are:
@@ -34,7 +34,7 @@ The apiguardian-api-1.1.0.jar is optional, but without it the compilation of tes
 
 To clean, run following:
 ```shell script
-bin/clean.sh
+bin/clean
 ```
 
 ### Execution
@@ -45,7 +45,7 @@ java -jar CsvParser-1.0.jar product.csv result
 
 Another convenient script is parse.sh
 ```shell script
-bin/parse.sh product.csv result
+bin/parse product.csv result
 ```
 
 ## Project Structure
