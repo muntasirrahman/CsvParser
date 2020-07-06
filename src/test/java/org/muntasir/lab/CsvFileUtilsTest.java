@@ -33,17 +33,17 @@ public class CsvFileUtilsTest {
             utils.setOutputLocation(new File(outputDirStr));
         });
 
-        var headers = new TreeSet<CsvField>();
+        TreeSet<CsvField> headers = new TreeSet<>();
 
-        var fullName = new StringField("full_name");
+        StringField fullName = new StringField("full_name");
         fullName.parseValue("Institute of Advanced Studies");
         headers.add(fullName);
 
-        var email = new EmailField("email");
+        EmailField email = new EmailField("email");
         email.parseValue("info@ias.edu");
         headers.add(email);
 
-        var endowment = new NumberField("endowment");
+        NumberField endowment = new NumberField("endowment");
         endowment.parseValue("741000111");
         headers.add(endowment);
 
@@ -71,9 +71,7 @@ public class CsvFileUtilsTest {
         System.out.println(outputPathPattern);
 
         CsvParser parser = new CsvParser();
-        assertDoesNotThrow(() -> {
-            parser.convert(csvFile, outputDir);
-        });
+        assertDoesNotThrow(() -> parser.convert(csvFile, outputDir));
 
     }
 }

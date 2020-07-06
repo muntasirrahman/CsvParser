@@ -68,8 +68,6 @@ Another convenient script is parse
 bin/parse product.csv result
 ```
 
-
-
 ## Project Structure
 
 This project was built using Gradle, using recommended gradle directory structure.
@@ -79,4 +77,4 @@ Software code are put inside
 
 The test code are inside *src/test/java*
 
-Gradle wrapper is included repository, to ensure successful execution of application build and running.
+Gradle wrapper is included repository, to ensure successful execution of application build and running using gradle.
