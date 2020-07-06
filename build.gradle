@@ -38,7 +38,8 @@ task copyJar (type: Copy) {
 
 build.dependsOn copyJar
 
-task deleteJar (type: Delete) {
+task deleteJarAndTestOutput (type: Delete) {
     delete "${projectDir}/${archivesBaseName}-${version}.jar"
+    delete "${projectDir}/src/test/resources/outputDir"
 }
-clean.dependsOn deleteJar
+clean.dependsOn deleteJarAndTestOutput
