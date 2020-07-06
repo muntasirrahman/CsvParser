@@ -2,27 +2,28 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 BUILD_DIR="$(dirname "$DIR")/build/classes/java/main"
+LIB_DIR="$(dirname "$DIR")/build/libs"
 SRC_DIR="$(dirname "$DIR")/src/main/java"
-JAR_FILE="CsvParser.jar"
+JAR_FILE="CsvParser-1.0.jar"
 
 mkdir -p $BUILD_DIR
 javac -sourcepath $SRC_DIR -d $BUILD_DIR $SRC_DIR/org/muntasir/lab/CsvParser.java
-mkdir -p lib
+mkdir -p build/libs
 jar cfe $JAR_FILE org.muntasir.lab.CsvParser -C $BUILD_DIR .
 
-LIB_JUNIT="$(dirname "$DIR")/lib/junit-jupiter-api-5.6.2.jar"
+LIB_JUNIT="${LIB_DIR}/junit-jupiter-api-5.6.2.jar"
 if [ ! -f "$LIB_JUNIT" ]; then
-  wget https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.6.2/junit-jupiter-api-5.6.2.jar -P lib/
+  wget https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.6.2/junit-jupiter-api-5.6.2.jar -P ${LIB_DIR}
 fi
 
-LIB_APIGUARDIAN="$(dirname "$DIR")/lib/apiguardian-api-1.1.0.jar"
+LIB_APIGUARDIAN="${LIB_DIR}/apiguardian-api-1.1.0.jar"
 if [ ! -f "$LIB_APIGUARDIAN" ]; then
-  wget https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar -P lib/
+  wget https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar -P ${LIB_DIR}
 fi
 
-JUNIT_CONSOLE="$(dirname "$DIR")/lib/junit-platform-console-standalone-1.6.0.jar"
+JUNIT_CONSOLE="${LIB_DIR}/junit-platform-console-standalone-1.6.0.jar"
 if [ ! -f "$JUNIT_CONSOLE" ]; then
-  wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.6.0/junit-platform-console-standalone-1.6.0.jar -P lib/
+  wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.6.0/junit-platform-console-standalone-1.6.0.jar -P ${LIB_DIR}
 fi
 
 # Build test suite

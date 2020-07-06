@@ -56,7 +56,7 @@ To clean, using gradle:
 ### Execution
 
 ```shell script
-java -jar CsvParser.jar product.csv result
+java -jar CsvParser-1.0.jar product.csv result
 ```
 
 ```shell script
