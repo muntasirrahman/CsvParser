@@ -18,6 +18,9 @@ application {
     mainClassName = 'org.muntasir.lab.CsvParser'
 }
 
+java {
+    sourceCompatibility = JavaVersion.toVersion(1.8)
+}
 test {
     useJUnitPlatform {
         includeEngines 'junit-jupiter'

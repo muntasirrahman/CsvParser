@@ -66,8 +66,9 @@ public class CsvFileUtils {
         LOG.fine("Output file path: " + outputFilePath);
         File outputFile = new File(outputFilePath);
 
+        FileWriter writer = null;
         try {
-            FileWriter writer = new FileWriter(outputFile, false);
+            writer = new FileWriter(outputFile, false);
             StringBuilder sb = new StringBuilder("{");
 
             Iterator<CsvField> iterator = fieldSet.iterator();
@@ -90,6 +91,14 @@ public class CsvFileUtils {
 
         } catch (IOException ioException) {
             throw new LineParsingException("Unable to write " + outputFile.getAbsolutePath());
+        } finally {
+            if ( writer!= null) {
+                try {
+                    writer.close();
+                } catch (IOException ignored) {
+
+                }
+            }
         }
         return outputFile;
     }

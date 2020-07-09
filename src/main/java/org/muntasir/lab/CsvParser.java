@@ -43,7 +43,10 @@ public class CsvParser {
                     : new File(args[1]);
 
             CsvParser parser = new CsvParser();
+            long startTime = System.currentTimeMillis();
             parser.convert(csvFile, outputDirectory);
+            long duration = System.currentTimeMillis() - startTime;
+            LOG.info("Finished in " + duration + " ms");
 
         } catch (FileNotFoundException e) {
             LOG.severe("File not found: " + e.getMessage());
@@ -76,8 +79,7 @@ public class CsvParser {
             try {
                 line = reader.readLine();
                 if (line == null) break;
-                if (line.isBlank()) continue;
-                ++lineCounter;
+                if (line.length() == 0) continue;
 
                 Set<CsvField> lineFields = clone(headerFields);
                 parseLineAndUpdateFields(line, lineFields);
