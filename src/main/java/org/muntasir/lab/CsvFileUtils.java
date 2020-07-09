@@ -4,18 +4,19 @@ import org.muntasir.lab.exceptions.FatalParsingException;
 import org.muntasir.lab.exceptions.LineParsingException;
 import org.muntasir.lab.field.CsvField;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static java.nio.file.StandardOpenOption.CREATE;
 import static org.muntasir.lab.exceptions.FatalParsingException.*;
-import static org.muntasir.lab.exceptions.FatalParsingException.OUTPUT_DIR_NOT_WRITABLE;
 
 public class CsvFileUtils {
 
@@ -54,21 +55,18 @@ public class CsvFileUtils {
             name =  name.substring(0, name.length() - 4);
         }
         // add output dir path
-        StringBuilder sb = new StringBuilder(outputDirectory.getAbsolutePath());
-        sb.append(File.separator).append(name).append("-%08d.json");
-        return sb.toString();
+        return outputDirectory.getAbsolutePath() + File.separator + name + "-%08d.json";
     }
 
     public File createJson(Set<CsvField> fieldSet, int fileCounter) throws LineParsingException {
 
         String outputFilePattern = createOutputPattern();
-        String outputFilePath = String.format(outputFilePattern, fileCounter);
-        LOG.fine("Output file path: " + outputFilePath);
-        File outputFile = new File(outputFilePath);
+        String outputFilePathStr = String.format(outputFilePattern, fileCounter);
+        Path outputFilePath = Paths.get(outputFilePathStr);
+        LOG.fine("Output NIO file path: " + outputFilePath);
 
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(outputFile, false);
+        try (BufferedWriter writer = Files.newBufferedWriter(outputFilePath, CREATE)) {
+
             StringBuilder sb = new StringBuilder("{");
 
             Iterator<CsvField> iterator = fieldSet.iterator();
@@ -85,21 +83,14 @@ public class CsvFileUtils {
                 }
             }
             sb.append("\n}");
-            LOG.fine(sb.toString());
+            //LOG.fine(sb.toString());
             writer.write(sb.toString());
             writer.flush();
 
         } catch (IOException ioException) {
-            throw new LineParsingException("Unable to write " + outputFile.getAbsolutePath());
-        } finally {
-            if ( writer!= null) {
-                try {
-                    writer.close();
-                } catch (IOException ignored) {
-
-                }
-            }
+            throw new LineParsingException("Unable to write " + outputFilePathStr);
         }
-        return outputFile;
+
+        return new File(outputFilePathStr);
     }
 }

@@ -7,8 +7,8 @@ import org.muntasir.lab.field.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -62,11 +62,11 @@ public class CsvParser {
         fileUtils.verifyInput(csvFile);
         fileUtils.setOutputLocation(outputDir);
 
-        BufferedReader reader = new BufferedReader(new FileReader(csvFile));
-
+        BufferedReader reader;
         // csv file headers
         Set<CsvField> headerFields;
         try {
+            reader = Files.newBufferedReader(csvFile.toPath());
             String headerLine = reader.readLine();
             headerFields = parseHeader(headerLine);
         } catch (IOException e) {
@@ -140,8 +140,8 @@ public class CsvParser {
 
     /**
      *
-     * @param set
-     * @param name
+     * @param set headers to be checked
+     * @param name new field name to be added
      * @return true if there is no duplication
      * @throws FatalParsingException if there is a duplicate field name
      */
